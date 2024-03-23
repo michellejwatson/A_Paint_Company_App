@@ -13,4 +13,4 @@ class Paint(models.Model):
     inventory = models.PositiveIntegerField()
 
     def _str_(self):
-        return self.title
+        return self.colour
