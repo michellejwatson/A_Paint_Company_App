@@ -12,5 +12,5 @@ class Paint(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='available')
     inventory = models.PositiveIntegerField()
 
-    def _str_(self):
+    def __str__(self):
         return self.colour
