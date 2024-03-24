@@ -7,7 +7,6 @@ import Header from './components/Header/Header';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import KanbanBoard from './components/KanbanBoard';
-import axios from 'axios';
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
