@@ -72,7 +72,6 @@ export default function KanbanBoard() {
     const colorToUpdate = draggableId;
     axios.post(`http://localhost:8000/api/post/${colorToUpdate}/`, {
       status: destination.droppableId,
-      inventory: 4,
     })
     .then(response => {
       console.log('Updated column data sent to backend:', response.data);
@@ -85,7 +84,7 @@ export default function KanbanBoard() {
   return (
     <div>
       <DragDropContext onDragEnd={onDragEnd}>
-        <h2 style={{color: '#472F5B'}}>PAINT STATUS BOARD</h2>
+        <h2 style={{color: '#472F5B'}}>PAINT STATUS</h2>
         <div style={{ 
           display: 'flex',
           justifyContent: 'center',
