@@ -17,6 +17,7 @@ export default function StatusColumn({ title, paints, id }) {
             display: 'flex',
             flexDirection: 'column',
             backgroundColor: '#526863',
+            borderRadius: '10px',
             minHeight: 500,
             flexGrow: 1,
             alignItems: 'center',

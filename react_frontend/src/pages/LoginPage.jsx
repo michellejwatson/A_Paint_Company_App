@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import Alert from '@mui/material/Alert';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -32,11 +33,11 @@ function LoginPage() {
 
   return (
     <div className="login-container">
-      {showError && (
-        <div className="error-popup">
-          Invalid username or password.
+      {showError && 
+        <div style={{margin: '1rem'}}>
+            <Alert severity="error">Incorrect Username or Password.</Alert>
         </div>
-      )}
+      }
       <form className="login-form" onSubmit={handleSubmit}>
         <input
           className="login-input"

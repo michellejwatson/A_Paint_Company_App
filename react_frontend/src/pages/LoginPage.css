@@ -12,8 +12,8 @@
   }
   
   .login-form {
-    width: 60%;
-    height: 50%;
+    width: 45%;
+    height: 40%;
     position: relative;
     border-radius: 1em;
     background-color: #526863;
@@ -26,10 +26,14 @@
   }
   
   .login-input {
-    width: 80%;
+    width: 85%;
     margin-bottom: 2rem;
     padding: 1rem;
     font-size: 1rem;
+    border-radius: 10px;
+    box-shadow: none !important;
+    outline: none ! important;
+    border: none ! important;
   }
   
   .login-button {
@@ -39,14 +43,15 @@
     background-color: #8F79A1;
     color: #203732;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    border-radius: 25px;
   }
 
   .login-button:hover {
     background-color: #a091aa;
   }
   
-  /* -------------------- TABLET OPTIMIZATION -------------------- */
+  /* FOR TABLET */
     @media only screen and (min-device-width: 37em) {
         .page {
             font-size: 1em;

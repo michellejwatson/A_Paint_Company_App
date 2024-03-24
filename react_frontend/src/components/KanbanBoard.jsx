@@ -84,7 +84,6 @@ export default function KanbanBoard() {
   return (
     <div>
       <DragDropContext onDragEnd={onDragEnd}>
-        <h2 style={{color: '#472F5B'}}>PAINT STATUS</h2>
         <div style={{ 
           display: 'flex',
           justifyContent: 'center',

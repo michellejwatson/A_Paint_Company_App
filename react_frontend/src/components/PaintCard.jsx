@@ -23,6 +23,7 @@ export default function PaintCard({ paint, index }) {
     background: '#C6D8D9',
     display: 'flex',
     justifyContent: 'center',
+    borderRadius: '10px',
     alignItems: 'center',
     flexDirection: 'column',
     marginTop: '15px',

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.css'; // Import CSS file for styling
+import './Header.css';
 import logo from '../../assets/logo.png'; 
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
