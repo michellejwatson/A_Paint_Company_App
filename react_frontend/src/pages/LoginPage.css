@@ -1,0 +1,59 @@
+/* LoginPage.css */
+.login-container {
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .login-form {
+    width: 60%;
+    height: 50%;
+    position: relative;
+    border-radius: 1em;
+    background-color: #526863;
+    font-size: 0.75em;
+    padding: 1rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+  }
+  
+  .login-input {
+    width: 80%;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  .login-button {
+    width: 50%;
+    padding: 1rem;
+    border: none;
+    background-color: #8F79A1;
+    color: #203732;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .login-button:hover {
+    background-color: #a091aa;
+  }
+  
+  /* -------------------- TABLET OPTIMIZATION -------------------- */
+    @media only screen and (min-device-width: 37em) {
+        .page {
+            font-size: 1em;
+        }
+
+        .cover {
+            width: 60%;
+            height: 70%;
+        }
+    }
