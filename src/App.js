@@ -10,25 +10,25 @@ axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Check if access token exists in local storage
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  useEffect(() => {
-    // Check if access token exists in local storage
-    const accessToken = localStorage.getItem('access_token');
-    if (accessToken) {
-      // Update isLoggedIn state if access token is found
-      setIsLoggedIn(true);
-    }
-  }, []);
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+  }
 
   return (
     <div className="App">
       <header className="App-header">
         <Router>
-          <Header />
+          <Header handleLogout={handleLogout}/>
           <Routes>
-            <Route path="/" element={isLoggedIn ? <MainPage /> : <Navigate to="/login" />} />
-            <Route path="/login" element={!isLoggedIn ? <LoginPage /> : <Navigate to="/" />} />
+            <Route path="/" element={loggedIn ? <MainPage /> : <Navigate to="/login" />}/>
+            <Route path="/login" element={!loggedIn ? <LoginPage handleLogin={handleLogin} /> : <Navigate to="/" />} />
           </Routes>
         </Router>
       </header>

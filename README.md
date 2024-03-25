@@ -31,11 +31,11 @@ Backend Tests: `python manage.py test`
 - To edit inventory, click the inventory value on the paint card and type in the correct value or use the up / down toggles. 
 
 ### API Documentation 
-`/admin/`: admin dashboard 
-`/api/`: retrieve all paint info 
-`/api/post/<str:colour>/`: update paint info 
-`/api/account/login/`: login user 
-`/api/account/logout/`: logout user 
+- `/admin/`: admin dashboard 
+- `/api/`: retrieve all paint info 
+- `/api/post/<str:colour>/`: update paint info 
+- `/api/account/login/`: login user 
+- `/api/account/logout/`: logout user 
 
 ### User Documentation
 1. John: John represents an employee who assigns houses to be painted who is able to view inventory and paint status, but is not able to edit them and has no admin privileges.

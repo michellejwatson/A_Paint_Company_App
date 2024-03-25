@@ -1,16 +1,14 @@
 import React from 'react';
 import './Header.css';
 import logo from '../../assets/logo.png'; 
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Header = () => {
+const Header = ({ handleLogout }) => {
   const isLoggedIn = !!localStorage.getItem('access_token');
   const username = localStorage.getItem('username');
-  const navigate = useNavigate();
 
   // Function to handle logout
-  const handleLogout = () => {
+  const handleSubmit = () => {
     try {
       // Make a request to logout endpoint
       axios.get('https://a-paint-company-a54db84c4060.herokuapp.com/api/account/logout/');
@@ -19,13 +17,11 @@ const Header = () => {
       localStorage.removeItem('access_token');
       
       // Redirect to the login page
-      navigate(0);
-      navigate('/login'); // Use navigate function to redirect
+      handleLogout();
     } catch (error) {
       console.error('Logout failed:', error);
     }
   };
-
 
   return (
     <div className="header">
@@ -35,7 +31,7 @@ const Header = () => {
       </div>
       {isLoggedIn && <div className="header__right">
         <h4>Hi {username}!</h4>
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleSubmit}>Logout</button>
       </div>}
     </div>
   );

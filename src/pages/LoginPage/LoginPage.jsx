@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import Alert from '@mui/material/Alert';
 
-function LoginPage() {
+function LoginPage( { handleLogin } ) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showError, setShowError] = useState(false); 
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,8 +20,7 @@ function LoginPage() {
       localStorage.setItem('username', username);
 
       // Redirect to main page on successful login
-      navigate(0);
-      navigate('/');
+      handleLogin();
     } catch (error) {
       console.error('Login failed:', error);
       // Display incorrect username or password error message
