@@ -15,6 +15,8 @@ const Header = ({ handleLogout }) => {
       
       // Clear user session
       localStorage.removeItem('access_token');
+      localStorage.removeItem('user_groups');
+      localStorage.removeItem('username');
       
       // Redirect to the login page
       handleLogout();

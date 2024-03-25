@@ -2,26 +2,18 @@
 Module containing views for the 'api' app.
 """
 
-from django.shortcuts import render, get_object_or_404, get_list_or_404
-from rest_framework.decorators import api_view, permission_classes
+from django.shortcuts import get_object_or_404, get_list_or_404
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth import authenticate
 from .models import Paint
 from .serializer import PaintSerializer
-from rest_framework.permissions import BasePermission
 
 # Define handlers for login
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-
-# Define custom permission class to ensure access post 
-class IsManagerPainterOrAdmin(BasePermission):
-    def has_permission(self, request, view):
-        # Check if the user belongs to one of the allowed groups for update
-        allowed_groups = ['Managers', 'Painters', 'Admin']
-        return any(request.user.groups.filter(name=group).exists() for group in allowed_groups)
 
 # Create your views here.
 
@@ -44,10 +36,6 @@ def post_data(request, colour):
     Update a paint's status or inventory.
     """
     try:
-        # Print user groups and authentication status
-        print("User groups:", request.user.groups.all())
-        print("Is authenticated:", request.user.is_authenticated)
-
         # Retrieve the Paint instance to update
         paint_instance = get_object_or_404(Paint, colour=colour)
 

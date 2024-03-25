@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import axios from 'axios';
 import './PaintCard.css'; // Import the CSS file
@@ -14,8 +14,15 @@ const colorMap = {
 
 export default function PaintCard({ paint, index }) {
   const colourValue = colorMap[paint.colour] || paint.colour;
-
+  const [editable, setEditable] = useState(false);
   const [editedInventory, setEditedInventory] = useState(paint.inventory);
+
+  useEffect(() => {
+    // Check if user groups contain 'Managers', 'Admin', or 'Painters'
+    const userGroups = JSON.parse(localStorage.getItem('user_groups') || '[]');
+    const authorized = userGroups.includes('Managers') || userGroups.includes('Admin') || userGroups.includes('Painters');
+    setEditable(authorized);
+  }, []);
 
   const handleInventoryChange = (e) => {
     const newInventory = e.target.value;
@@ -33,7 +40,7 @@ export default function PaintCard({ paint, index }) {
   };
 
   return (
-    <Draggable draggableId={paint.colour} key={paint.colour} index={index}>
+    <Draggable draggableId={paint.colour} key={paint.colour} index={index} isDragDisabled={!editable}>
       {(provided) => (
         <div
           ref={provided.innerRef}
@@ -48,6 +55,7 @@ export default function PaintCard({ paint, index }) {
                 type="number"
                 value={editedInventory}
                 onChange={handleInventoryChange}
+                readOnly={!editable}
               />
             </div>
           </div>
