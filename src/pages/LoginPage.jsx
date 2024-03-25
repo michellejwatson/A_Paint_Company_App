@@ -13,7 +13,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/account/login/', {
+      const response = await axios.post('${process.env.BACKEND_URL}/api/account/login/', {
         username,
         password,
       });
