@@ -52,7 +52,7 @@ This web application is for employees at 'A Paint Company' to track the status o
     {
         "colour": "string",
         "status": "string",
-        "inventory": integer
+        "inventory": 2
     }
 ]
 ```
@@ -62,38 +62,48 @@ This web application is for employees at 'A Paint Company' to track the status o
 - Method: POST 
 - Parameters: `colour`: The colour of the paint to be updated.
 - Request Body: JSON data containing the updated information (can include fields status or inventory or both)
-```{
+```json
+{
   "status": "string", // Optional
-  "inventory": integer // Optional
-}```
+  "inventory": 2 // Optional
+}
+```
 - Response: Returns JSON data containing the updated paint details with fields colour, status, and inventory
-```{
+```json
+{
   "colour": "string",
   "status": "string",
-  "inventory": integer
-}```
+  "inventory": 2
+}
+```
 
 `/api/account/login/`
 - Description: Login user with JSON web token authentication.
 - Method: POST
 - Request Body: JSON data containing the user's username and password.
-```{
+```json
+{
   "username": "string",
   "password": "string"
-}```
+}
+```
 - Response: JSON data containing a JWT access token and user groups.
-```{
+```json
+{
   "token": "string",
-  "user_groups": ["string", ...]
-}```
+  "user_groups": ["string", "string", "etc"]
+}
+```
 
 `/api/account/logout/`
 - Description: Logout user with JSON web token authentication.
 - Method: GET 
 - Response: JSON message indicating successful logout
-```{
+```json 
+{
   "message": "string"
-}```
+}
+```
 ---
 
 ### Setup Locally
