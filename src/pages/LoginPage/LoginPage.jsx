@@ -11,6 +11,7 @@ function LoginPage( { handleLogin } ) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Send post request with login credentials using axios
       const response = await axios.post('https://a-paint-company-a54db84c4060.herokuapp.com/api/account/login/', {
         username,
         password,
@@ -22,7 +23,7 @@ function LoginPage( { handleLogin } ) {
       localStorage.setItem('user_groups', JSON.stringify(user_groups));
       localStorage.setItem('username', username);
 
-      // Redirect to main page on successful login
+      // Use handleLogin() to redirect to main page on successful login
       handleLogin();
     } catch (error) {
       console.error('Login failed:', error);

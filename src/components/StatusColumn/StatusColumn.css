@@ -27,19 +27,20 @@
     margin: 5%;
   }
   
-  /* Media query for responsiveness */
-  @media (max-width: 768px) {
-    /* Adjustments for smaller screens */
+  /* Responsive UI for smaller screen or mobile */
+  @media (max-width: 850px) {
     .status-column-container {
-      min-width: auto; /* Remove minimum width for smaller screens */
-      margin-bottom: 2%; /* Add space between StatusColumns vertically */
+      min-width: auto;
+      margin-bottom: 2%;
     }
   
     .droppable-area {
-      flex-direction: row; /* Change flex direction to rows for smaller screens */
-      flex-wrap: wrap; /* Allow items to wrap into multiple rows */
-      justify-content: space-around; /* Align items horizontally with space around them */
-      min-height: auto; /* Remove minimum height */
+      /* Change flex direction to rows for smaller screens */
+      flex-direction: row; 
+      /* Allow items to wrap into multiple rows */
+      flex-wrap: wrap;
+      justify-content: space-around;
+      min-height: auto;
     }
   }
   

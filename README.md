@@ -114,5 +114,10 @@ This web application is for employees at 'A Paint Company' to track the status o
 - I have made the assumption that users like John, whose role only involves accessing paint information for their job, should only have viewing permissions on the application. This decision aligns with the principle of least privilege, which is a security best practice aiming to restrict users' access rights to the bare minimum required for their job responsibilities.
 ---
 
+### Future Work 
+- More thorough of testing needs to be implemented for both the frontend React app and the backend Django project. 
+- Once these tests are created and working properly, testing needs to be added to the Github Actions workflow for improved DevOps capabilities. 
+---
+
 ### References 
 LOGO.com was used to generate the company logo. This logo is stored at `./public/logo.png` and at `./src/assets/logo.png`.

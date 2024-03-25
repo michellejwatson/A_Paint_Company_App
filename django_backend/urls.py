@@ -20,6 +20,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Add URL path to Django api app
     path('api/', include('api.urls')),
 
     # Route all other paths to React frontend

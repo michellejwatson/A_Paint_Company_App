@@ -11,9 +11,8 @@
     flex-direction: row;
   }
   
-  /* Media query for responsiveness */
-  @media (max-width: 768px) {
-    /* Flex layout for smaller screens */
+  /* Responsive UI for smaller screen or mobile */
+  @media (max-width: 850px) {
     .kanban-board {
       display: flex;
       flex-direction: column;

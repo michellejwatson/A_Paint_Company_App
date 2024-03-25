@@ -5,7 +5,7 @@ import StatusColumn from '../StatusColumn/StatusColumn';
 import './KanbanBoard.css'; // Import the CSS file
 
 export default function KanbanBoard() {
-  // States for each column of board 
+  // States for each column of kanban board 
   const [available, setAvailable] = useState([]);
   const [runningLow, setRunningLow] = useState([]);
   const [outOfStock, setOutOfStock] = useState([]);
@@ -18,6 +18,7 @@ export default function KanbanBoard() {
         const availablePaints = response.data.filter(paint => paint.status === 'available');
         const runningLowPaints = response.data.filter(paint => paint.status === 'running_low');
         const outOfStockPaints = response.data.filter(paint => paint.status === 'out_of_stock');
+        // Set paint statuses
         setAvailable(availablePaints);
         setRunningLow(runningLowPaints);
         setOutOfStock(outOfStockPaints);
@@ -27,14 +28,15 @@ export default function KanbanBoard() {
 
   const onDragEnd = result => {
     const { destination, source, draggableId } = result;
-    if (!destination) return; // Return if dropped outside the droppable area
+    // Return PaintCard to StatusColumn if dropped outside the droppable area
+    if (!destination) return; 
   
-    // Create copies of the source and destination column
+    // Create copies of the source and destination column for ordering
     let updatedAvailable = [...available];
     let updatedRunningLow = [...runningLow];
     let updatedOutOfStock = [...outOfStock];
   
-    // Remove the paint card from the source column
+    // Remove the PaintCard from the source column
     const [removed] = (() => {
       switch (source.droppableId) {
         case 'available':
@@ -48,7 +50,7 @@ export default function KanbanBoard() {
       }
     })();
   
-    // Insert the paint card into the destination column
+    // Insert the PaintCard into the destination column
     switch (destination.droppableId) {
       case 'available':
         updatedAvailable.splice(destination.index, 0, removed);
@@ -63,12 +65,12 @@ export default function KanbanBoard() {
         break;
     }
   
-    // Update state based on the destination droppableId
+    // Update states based on the destination droppableId
     setAvailable(updatedAvailable);
     setRunningLow(updatedRunningLow);
     setOutOfStock(updatedOutOfStock);
   
-    // Send updated column data to the Django backend
+    // Send updated column data to the Django backend to update paint status
     const colorToUpdate = draggableId;
     axios.post(
       `https://a-paint-company-a54db84c4060.herokuapp.com/api/post/${colorToUpdate}/`,

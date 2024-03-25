@@ -10,7 +10,7 @@ const Header = ({ handleLogout }) => {
   // Function to handle logout
   const handleSubmit = () => {
     try {
-      // Make a request to logout endpoint
+      // Make a request to Django logout endpoint
       axios.get('https://a-paint-company-a54db84c4060.herokuapp.com/api/account/logout/');
       
       // Clear user session
@@ -18,9 +18,10 @@ const Header = ({ handleLogout }) => {
       localStorage.removeItem('user_groups');
       localStorage.removeItem('username');
       
-      // Redirect to the login page
+      // Use handleLogout() to redirect to the login page
       handleLogout();
     } catch (error) {
+      // Display error if logout has failed
       console.error('Logout failed:', error);
     }
   };

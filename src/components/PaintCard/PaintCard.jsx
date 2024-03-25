@@ -3,7 +3,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import axios from 'axios';
 import './PaintCard.css'; // Import the CSS file
 
-// Mapping paint colours to background colours
+// Mapping default paint colours to preferred colours for colour on PaintCard
 const colorMap = {
   'Blue': '#003D80',
   'Grey': '#555555',
@@ -13,6 +13,7 @@ const colorMap = {
 };
 
 export default function PaintCard({ paint, index }) {
+  // Set colourValue, if mapping value doesn't exist then use default 
   const colourValue = colorMap[paint.colour] || paint.colour;
   const [editable, setEditable] = useState(false);
   const [editedInventory, setEditedInventory] = useState(paint.inventory);
@@ -24,10 +25,13 @@ export default function PaintCard({ paint, index }) {
     setEditable(authorized);
   }, []);
 
+  // Function to handle if inventory value is edited
   const handleInventoryChange = (e) => {
     const newInventory = e.target.value;
+    // Update inventory value
     setEditedInventory(newInventory);
 
+    // Send post request with new inventory value using axios
     axios.post(`https://a-paint-company-a54db84c4060.herokuapp.com/api/post/${paint.colour}/`, {
       inventory: newInventory,
     })

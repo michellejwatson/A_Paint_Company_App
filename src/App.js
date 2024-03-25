@@ -10,21 +10,23 @@ axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 function App() {
-  // Check if access token exists in local storage
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     // Check if access token exists in local storage
     const token = localStorage.getItem('access_token');
+    // If token exists, then set user to logged in
     if (token) {
       setLoggedIn(true);
     }
-  }, []); // Run this effect only once on component mount
+  }, []);
 
+  // Set loggedIn to true when handleLogin() is called 
   const handleLogin = () => {
     setLoggedIn(true);
   };
 
+  // Set loggedIn to false when handleLogout() is called 
   const handleLogout = () => {
     setLoggedIn(false);
   }

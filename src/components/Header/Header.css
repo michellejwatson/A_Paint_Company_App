@@ -1,3 +1,5 @@
+/* Styling for Header component */
+
 .header {
     position: fixed;
     top: 0;
@@ -51,15 +53,15 @@
     border-radius: 25px;
 }
 
-/* mobile */
-@media (max-width: 768px) {
+/* Responsive UI for smaller screen or mobile */
+@media (max-width: 850px) {
     .company-logo {
         width: 30px; 
         margin-right: 5px;
     }
     
     .header__left h1 {
-        font-size: 1rem; /* Adjust font size for smaller screens */
+        font-size: 1rem;
         padding: 0%;
     }
 
