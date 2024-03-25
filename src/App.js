@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import logo from './assets/logo.svg';
-import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header/Header';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage/LoginPage';
-import KanbanBoard from './components/KanbanBoard/KanbanBoard';
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'

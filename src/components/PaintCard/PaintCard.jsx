@@ -39,16 +39,17 @@ export default function PaintCard({ paint, index }) {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className="paint-card"
-          style={{ borderLeft: `25px solid ${colourValue}` }}
+          
         >
-          <div className="paint-card-color">{paint.colour}</div>
-          <div className="paint-card-inventory">Inventory:
-            <input
-              type="number"
-              value={editedInventory}
-              onChange={handleInventoryChange}
-            />
+          <div className="paint-card" style={{ borderLeft: `25px solid ${colourValue}` }}>
+            <div className="paint-card-color">{paint.colour}</div>
+            <div className="paint-card-inventory">Inventory:
+              <input
+                type="number"
+                value={editedInventory}
+                onChange={handleInventoryChange}
+              />
+            </div>
           </div>
         </div>
       )}
