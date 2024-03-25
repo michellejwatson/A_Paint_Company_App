@@ -33,13 +33,6 @@ jobs:
       - name: Run Django tests
         run: python manage.py test
 
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
