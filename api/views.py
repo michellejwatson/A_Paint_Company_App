@@ -10,6 +10,7 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth import authenticate
 from .models import Paint
 from .serializer import PaintSerializer
+from rest_framework.exceptions import NotFound
 
 # Define handlers for login
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -74,14 +75,6 @@ def login(request):
                 'token': token,
                 'user_groups': user_groups
             }
-
-            response.set_cookie(
-                key='access_token',
-                value=token,
-                httponly=True,
-                secure=True,
-                samesite='Strict'
-            )
             response.data = response_data
             return response
         else:
@@ -99,15 +92,15 @@ def logout(request):
     User logout with JSON web token authentication.
     """
     try:
-        # Check if access token is in cookeis (otherwise already logged out)
-        user_token = request.COOKIES.get('access_token', None)
+        # Check if access token is in cookies (otherwise already logged out)
+        user_token = request.COOKIES.get('access_token')
         if user_token:
             response = Response()
-            response.delete_cookie(key='access_token')
-            response.message('Logout successful')
+            response.data = {'message': 'Logout Succesful'}
             return response
         else:
-            return Response({'message': 'Already logged out'})
-    # Error handling
+            raise NotFound(detail="Access token not found")  # Raise 404 if access token is not found
+    except NotFound as e:
+        return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
