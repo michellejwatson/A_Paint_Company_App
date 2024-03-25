@@ -15,8 +15,11 @@ function LoginPage( { handleLogin } ) {
         username,
         password,
       });
-      // set token in local storage 
-      localStorage.setItem('access_token', response.data);
+      const { token, user_groups } = response.data;
+
+      // Set token, user groups, and username in local storage 
+      localStorage.setItem('access_token', token);
+      localStorage.setItem('user_groups', JSON.stringify(user_groups));
       localStorage.setItem('username', username);
 
       // Redirect to main page on successful login

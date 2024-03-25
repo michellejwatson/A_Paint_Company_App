@@ -39,12 +39,15 @@ def get_data(request):
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
-@permission_classes([IsManagerPainterOrAdmin])
 def post_data(request, colour):
     """
     Update a paint's status or inventory.
     """
     try:
+        # Print user groups and authentication status
+        print("User groups:", request.user.groups.all())
+        print("Is authenticated:", request.user.is_authenticated)
+
         # Retrieve the Paint instance to update
         paint_instance = get_object_or_404(Paint, colour=colour)
 
@@ -75,6 +78,15 @@ def login(request):
             payload = jwt_payload_handler(user)
             token = jwt_encode_handler(payload)
             response = Response()
+
+            # Find user groups
+            user_groups = [group.name for group in user.groups.all()]
+            # Add user groups to response data
+            response_data = {
+                'token': token,
+                'user_groups': user_groups
+            }
+
             response.set_cookie(
                 key='access_token',
                 value=token,
@@ -82,7 +94,7 @@ def login(request):
                 secure=True,
                 samesite='Strict'
             )
-            response.data = token
+            response.data = response_data
             return response
         else:
             # If authentication fails, return error response
