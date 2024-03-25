@@ -38,7 +38,7 @@ export default function PaintCard({ paint, index }) {
     setEditedInventory(newInventory);
 
     // Send updated inventory data to the Django backend
-    axios.post(`http://localhost:8000/api/post/${paint.colour}/`, {
+    axios.post(`https://a-paint-company-a54db84c4060.herokuapp.com/api/post/${paint.colour}/`, {
       inventory: newInventory,
     })
       .then(response => {

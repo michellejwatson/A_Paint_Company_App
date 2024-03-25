@@ -11,7 +11,7 @@ export default function KanbanBoard() {
 
   useEffect(() => {
     // Fetch paint info from backend using axios
-    axios.get('http://localhost:8000/api/')
+    axios.get('https://a-paint-company-a54db84c4060.herokuapp.com/api/')
       .then(response => {
         // Organize paints based on their status
         const availablePaints = response.data.filter(paint => paint.status === 'available');
@@ -69,7 +69,7 @@ export default function KanbanBoard() {
   
     // Send updated column data to the Django backend
     const colorToUpdate = draggableId;
-    axios.post(`http://localhost:8000/api/post/${colorToUpdate}/`, {
+    axios.post(`https://a-paint-company-a54db84c4060.herokuapp.com/api/post/${colorToUpdate}/`, {
       status: destination.droppableId,
     })
     .then(response => {

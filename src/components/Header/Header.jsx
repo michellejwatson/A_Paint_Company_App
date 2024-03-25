@@ -13,7 +13,7 @@ const Header = () => {
   const handleLogout = () => {
     try {
       // Make a request to logout endpoint
-      axios.get('http://localhost:8000/api/account/logout/');
+      axios.get('https://a-paint-company-a54db84c4060.herokuapp.com/api/account/logout/');
       
       // Clear user session
       localStorage.removeItem('access_token');
