@@ -1,0 +1,22 @@
+/* Styling for KanbanBoard component */
+
+/* Container for KanbanBoard */
+.kanban-board-container {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .kanban-board {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* Media query for responsiveness */
+  @media (max-width: 768px) {
+    /* Flex layout for smaller screens */
+    .kanban-board {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  

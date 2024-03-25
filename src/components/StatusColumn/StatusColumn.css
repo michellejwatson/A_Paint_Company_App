@@ -1,0 +1,45 @@
+/* Styling for StatusColumn component */
+
+/* Style for the container of StatusColumn */
+.status-column-container {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  /* Style for the title of StatusColumn */
+  .status-column-title {
+    color: #472F5B;
+    background-color: #C6D8D9;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5%;
+  }
+  
+  /* Style for the droppable area */
+  .droppable-area {
+    display: flex;
+    flex-direction: column;
+    background-color: #526863;
+    border-radius: 10px;
+    min-height: 500px;
+    flex-grow: 1;
+    align-items: center;
+    margin: 5%;
+  }
+  
+  /* Media query for responsiveness */
+  @media (max-width: 768px) {
+    /* Adjustments for smaller screens */
+    .status-column-container {
+      min-width: auto; /* Remove minimum width for smaller screens */
+      margin-bottom: 2%; /* Add space between StatusColumns vertically */
+    }
+  
+    .droppable-area {
+      flex-direction: row; /* Change flex direction to rows for smaller screens */
+      flex-wrap: wrap; /* Allow items to wrap into multiple rows */
+      justify-content: space-around; /* Align items horizontally with space around them */
+      min-height: auto; /* Remove minimum height */
+    }
+  }
+  

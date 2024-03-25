@@ -9,7 +9,7 @@
     padding: 5px; 
     background-color: #203732;
     color: #8F79A1;
-    height: auto; 
+    height: 50px; 
 }
 
 .header__left {
@@ -24,7 +24,7 @@
 
 .header__left h1 {
     margin: 0;
-    font-size: 3rem; 
+    font-size: 2rem; 
     line-height: 1.5;
 }
 
@@ -46,7 +46,22 @@
     padding: 8px 16px;
     text-align: center;
     text-decoration: none;
-    font-size: 1.5rem; 
+    font-size: 1.25rem; 
     cursor: pointer;
     border-radius: 25px;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .header__left h1 {
+        font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+
+    .header__right h4 {
+        font-size: 1rem;
+    }
+
+    .header__right button {
+        font-size: 1rem;
+    }
 }
