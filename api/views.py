@@ -1,3 +1,7 @@
+"""
+Module containing views for the 'api' app.
+"""
+
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -13,37 +17,43 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 # Create your views here.
 
-# GET view to get all paint info
 @api_view(['GET'])
-def getData(request):
+def get_data(request):
+    """
+    Retrieve all paint information.
+    """
     try:
         paint_instances = get_list_or_404(Paint)
         serializer = PaintSerializer(paint_instances, many=True)
         return Response(serializer.data)
-    # Error handling 
+    # Error handling
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-# POST view to update a paint status or inventory
 @api_view(['POST'])
-def postData(request, colour):
+def post_data(request, colour):
+    """
+    Update a paint's status or inventory.
+    """
     try:
         # Retrieve the Paint instance to update
         paint_instance = get_object_or_404(Paint, colour=colour)
-        
+
         # Serialize the request data and update the Paint instance
         serializer = PaintSerializer(paint_instance, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    # Error handling 
+    # Error handling
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-# LOGIN view (POST) with JSON web token (JWT) authentication
 @api_view(['POST'])
 def login(request):
+    """
+    User login with JSON web token authentication.
+    """
     try:
         # Extract username and password from request data
         username = request.data.get('username')
@@ -56,19 +66,30 @@ def login(request):
             payload = jwt_payload_handler(user)
             token = jwt_encode_handler(payload)
             response = Response()
-            response.set_cookie(key='access_token', value=token, httponly=True, secure=True, samesite='Strict')
+            response.set_cookie(
+                key='access_token',
+                value=token,
+                httponly=True,
+                secure=True,
+                samesite='Strict'
+            )
             response.data = token
             return response
         else:
             # If authentication fails, return error response
-            return Response({'error': 'Invalid username or password'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response(
+                {'error': 'Invalid username or password'},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-# LOGOUT view (GET) with JSON web token (JWT) authentication
 @api_view(['GET'])
 def logout(request):
-    try: 
+    """
+    User logout with JSON web token authentication.
+    """
+    try:
         # Check if access token is in cookeis (otherwise already logged out)
         user_token = request.COOKIES.get('access_token', None)
         if user_token:
@@ -78,6 +99,6 @@ def logout(request):
             return response
         else:
             return Response({'message': 'Already logged out'})
-    # Error handling 
+    # Error handling
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

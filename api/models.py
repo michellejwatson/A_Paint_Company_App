@@ -1,7 +1,14 @@
+"""
+Module containing Django models for the Paint application.
+"""
+
 from django.db import models
 
 # Create Paint Model
 class Paint(models.Model):
+    """
+    Model representing a paint color.
+    """
     STATUS_CHOICES = [
         ('running_low', 'Running Low'),
         ('available', 'Available'),
@@ -13,4 +20,4 @@ class Paint(models.Model):
     inventory = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.colour
+        return f"{self.colour}"

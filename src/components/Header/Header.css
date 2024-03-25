@@ -53,8 +53,14 @@
 
 /* mobile */
 @media (max-width: 768px) {
+    .company-logo {
+        width: 30px; 
+        margin-right: 5px;
+    }
+    
     .header__left h1 {
-        font-size: 1.5rem; /* Adjust font size for smaller screens */
+        font-size: 1rem; /* Adjust font size for smaller screens */
+        padding: 0%;
     }
 
     .header__right h4 {

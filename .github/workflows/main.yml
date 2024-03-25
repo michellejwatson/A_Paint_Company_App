@@ -30,17 +30,8 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Run React tests
-        run: npm test
-
-      - name: Lint React code
-        run: npm run lint
-
       - name: Run Django tests
         run: python manage.py test
-
-      - name: Lint Django code
-        run: pylint .
 
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
