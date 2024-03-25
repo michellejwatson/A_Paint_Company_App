@@ -1,0 +1,51 @@
+name: Paint Company CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12.2
+
+      - name: Install frontend dependencies
+        run: npm install
+          
+      - name: Install backend dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build React app
+        run: npm run build
+
+      - name: Run React tests
+        run: npm test
+
+      - name: Lint React code
+        run: npm run lint
+
+      - name: Run Django tests
+        run: python manage.py test
+
+      - name: Lint Django code
+        run: pylint .
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_SECRET_KEY }}
+          heroku_app_name: "a-paint-company"
+          heroku_email: "michellejwatson1@gmail.com"
+          dontautocreate: true
