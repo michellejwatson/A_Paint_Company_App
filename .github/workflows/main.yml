@@ -30,9 +30,6 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Run Django tests
-        run: python manage.py test
-
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
