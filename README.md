@@ -47,49 +47,49 @@ This web application is for employees at 'A Paint Company' to track the status o
 - Description: Retrieve all paint information 
 - Method: GET 
 - Response: Returns JSON data containing details of all paints including the fields colour, status, and inventory
-``[{
+```[{
     "colour": "string",
     "status": "string",
     "inventory": integer
-  },]``
+  },]```
 
 `/api/post/<str:colour>/`
 - Description: update paint info of specific paint colour
 - Method: POST 
 - Parameters: `colour`: The colour of the paint to be updated.
 - Request Body: JSON data containing the updated information (can include fields status or inventory or both)
-``{
+```{
   "status": "string", // Optional
   "inventory": integer // Optional
-}``
+}```
 - Response: Returns JSON data containing the updated paint details with fields colour, status, and inventory
-``{
+```{
   "colour": "string",
   "status": "string",
   "inventory": integer
-}``
+}```
 
 `/api/account/login/`
 - Description: Login user with JSON web token authentication.
 - Method: POST
 - Request Body: JSON data containing the user's username and password.
-``{
+```{
   "username": "string",
   "password": "string"
-}``
+}```
 - Response: JSON data containing a JWT access token and user groups.
-``{
+```{
   "token": "string",
   "user_groups": ["string", ...]
-}``
+}```
 
 `/api/account/logout/`
 - Description: Logout user with JSON web token authentication.
 - Method: GET 
 - Response: JSON message indicating successful logout
-``{
+```{
   "message": "string"
-}``
+}```
 ---
 
 ### Setup Locally
