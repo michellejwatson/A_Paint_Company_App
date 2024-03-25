@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
@@ -12,6 +12,14 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 function App() {
   // Check if access token exists in local storage
   const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if access token exists in local storage
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      setLoggedIn(true);
+    }
+  }, []); // Run this effect only once on component mount
 
   const handleLogin = () => {
     setLoggedIn(true);

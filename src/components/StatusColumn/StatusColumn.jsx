@@ -1,7 +1,7 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import PaintCard from '../PaintCard/PaintCard';
-import './StatusColumn.css'; // Import the CSS file
+import './StatusColumn.css';
 
 export default function StatusColumn({ title, paints, id }) {
   return (
