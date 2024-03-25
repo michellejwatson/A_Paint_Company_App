@@ -47,11 +47,15 @@ This web application is for employees at 'A Paint Company' to track the status o
 - Description: Retrieve all paint information 
 - Method: GET 
 - Response: Returns JSON data containing details of all paints including the fields colour, status, and inventory
-```[{
-    "colour": "string",
-    "status": "string",
-    "inventory": integer
-  },]```
+```json
+[
+    {
+        "colour": "string",
+        "status": "string",
+        "inventory": integer
+    }
+]
+```
 
 `/api/post/<str:colour>/`
 - Description: update paint info of specific paint colour
