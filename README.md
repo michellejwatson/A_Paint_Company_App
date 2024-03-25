@@ -56,4 +56,4 @@ Backend Tests: `python manage.py test`
 2. The only functionality that needs to be done on the app is tracking paint inventory and status, bulk orders would not be performed through the application. 
 
 ### References 
-To generate the company's logo, LOGO.com was used. 
+LOGO.com was used to generate the company logo. This logo is stored at `./public/logo.png`.

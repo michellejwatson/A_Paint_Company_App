@@ -18,7 +18,7 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 # Define custom permission class to ensure access post 
 class IsManagerPainterOrAdmin(BasePermission):
-    def has_permission(self, request):
+    def has_permission(self, request, view):
         # Check if the user belongs to one of the allowed groups for update
         allowed_groups = ['Managers', 'Painters', 'Admin']
         return any(request.user.groups.filter(name=group).exists() for group in allowed_groups)
