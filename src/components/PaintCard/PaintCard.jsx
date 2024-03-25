@@ -15,14 +15,19 @@ const colorMap = {
 export default function PaintCard({ paint, index }) {
   // Set colourValue, if mapping value doesn't exist then use default 
   const colourValue = colorMap[paint.colour] || paint.colour;
-  const [editable, setEditable] = useState(false);
+  const [editableInventory, setEditableInventory] = useState(false);
+  const [editableStatus, setEditableStatus] = useState(false);
   const [editedInventory, setEditedInventory] = useState(paint.inventory);
 
   useEffect(() => {
-    // Check if user groups contain 'Managers', 'Admin', or 'Painters'
+    // Retrieve user groups from storage
     const userGroups = JSON.parse(localStorage.getItem('user_groups') || '[]');
-    const authorized = userGroups.includes('Managers') || userGroups.includes('Admin') || userGroups.includes('Painters');
-    setEditable(authorized);
+    // If user is in Painters, Managers or Admin groups, then allow updating of inventory
+    const authorizedInventory = userGroups.includes('Managers') || userGroups.includes('Admin') || userGroups.includes('Painters');
+    setEditableInventory(authorizedInventory);
+    // If user is in Managers or Admin groups, then allow moving of PaintCards
+    const authorizedStatus = userGroups.includes('Managers') || userGroups.includes('Admin');
+    setEditableStatus(authorizedStatus);
   }, []);
 
   // Function to handle if inventory value is edited
@@ -44,7 +49,7 @@ export default function PaintCard({ paint, index }) {
   };
 
   return (
-    <Draggable draggableId={paint.colour} key={paint.colour} index={index} isDragDisabled={!editable}>
+    <Draggable draggableId={paint.colour} key={paint.colour} index={index} isDragDisabled={!editableStatus}>
       {(provided) => (
         <div
           ref={provided.innerRef}
@@ -59,7 +64,7 @@ export default function PaintCard({ paint, index }) {
                 type="number"
                 value={editedInventory}
                 onChange={handleInventoryChange}
-                readOnly={!editable}
+                readOnly={!editableInventory}
               />
             </div>
           </div>
