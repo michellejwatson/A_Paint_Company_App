@@ -10,22 +10,22 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth import authenticate
 from .models import Paint
 from .serializer import PaintSerializer
-from rest_framework.permissions import IsAuthenticated, BasePermission
+from rest_framework.permissions import BasePermission
 
 # Define handlers for login
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
-# Define custom permission class
-class IsNotAssigner(BasePermission):
-    def has_permission(self, request, view):
-        # Check if the user does not belong to the 'Assigners' group
-        return not request.user.groups.filter(name='Assigners').exists()
+# Define custom permission class to ensure access post 
+class IsManagerPainterOrAdmin(BasePermission):
+    def has_permission(self, request):
+        # Check if the user belongs to one of the allowed groups for update
+        allowed_groups = ['Managers', 'Painters', 'Admin']
+        return any(request.user.groups.filter(name=group).exists() for group in allowed_groups)
 
 # Create your views here.
 
 @api_view(['GET'])
-@permission_classes([IsNotAssigner])
 def get_data(request):
     """
     Retrieve all paint information.
@@ -39,6 +39,7 @@ def get_data(request):
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
+@permission_classes([IsManagerPainterOrAdmin])
 def post_data(request, colour):
     """
     Update a paint's status or inventory.
