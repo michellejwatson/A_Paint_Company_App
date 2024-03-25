@@ -13,7 +13,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('${process.env.BACKEND_URL}/api/account/login/', {
+      const response = await axios.post('https://a-paint-company-a54db84c4060.herokuapp.com/api/account/login/', {
         username,
         password,
       });
