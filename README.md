@@ -37,12 +37,59 @@ This web application is for employees at 'A Paint Company' to track the status o
 4. Adam: Adam represents a system admin user. He is in the 'Admin' user group so he is able to create, delete, and edit users and user groups by accessing the `/admin/` dashboard. He is also able to view and update paint inventory and status.
 ---
 
-### API Documentation 
-- `/admin/`: access admin dashboard which provides access to users, groups, and the Paints model
-- `/api/`: retrieve all paint info 
-- `/api/post/<str:colour>/`: update paint info of specific paint colour
-- `/api/account/login/`: login user 
-- `/api/account/logout/`: logout user 
+### API Specification 
+`/admin/`
+- Description: access admin dashboard which provides access to users, groups, and the Paints model
+- Method: GET
+- Response: Renders the admin dashboard
+
+`/api/`
+- Description: Retrieve all paint information 
+- Method: GET 
+- Response: Returns JSON data containing details of all paints including the fields colour, status, and inventory
+``[{
+    "colour": "string",
+    "status": "string",
+    "inventory": integer
+  },]``
+
+`/api/post/<str:colour>/`
+- Description: update paint info of specific paint colour
+- Method: POST 
+- Parameters: `colour`: The colour of the paint to be updated.
+- Request Body: JSON data containing the updated information (can include fields status or inventory or both)
+``{
+  "status": "string", // Optional
+  "inventory": integer // Optional
+}``
+- Response: Returns JSON data containing the updated paint details with fields colour, status, and inventory
+``{
+  "colour": "string",
+  "status": "string",
+  "inventory": integer
+}``
+
+`/api/account/login/`
+- Description: Login user with JSON web token authentication.
+- Method: POST
+- Request Body: JSON data containing the user's username and password.
+``{
+  "username": "string",
+  "password": "string"
+}``
+- Response: JSON data containing a JWT access token and user groups.
+``{
+  "token": "string",
+  "user_groups": ["string", ...]
+}``
+
+`/api/account/logout/`
+- Description: Logout user with JSON web token authentication.
+- Method: GET 
+- Response: JSON message indicating successful logout
+``{
+  "message": "string"
+}``
 ---
 
 ### Setup Locally
