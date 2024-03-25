@@ -48,12 +48,13 @@ This web application is for 'A Paint Company' to track the status of their paint
 7. Navigate to the backend server at `localhost:8000`. Read section 'API Documentation' for information on how to use backend server. 
 
 ### Testing 
-Frontend Tests: `npm test`
-Backend Tests: `python manage.py test`
+- Frontend Tests: `npm test`
+- Backend Tests: `python manage.py test`
 
 ### Project Assumptions 
 1. It is not necessary for there to be a register user / create account page because this can be done on the admin dashboard by staff accounts.
-2. The only functionality that needs to be done on the app is tracking paint inventory and status, bulk orders would not be performed through the application. 
+2. Tracking paint inventory and status is the only required functionality beyond authentication, therefore actions such as bulk orders would not be performed through the application. 
+3. It is required to implement the principle of least privilege by giving users like John (Assigners group) the lowest privilege they need which is just view access, instead of allowing them to edit the paint information. 
 
 ### References 
 LOGO.com was used to generate the company logo. This logo is stored at `./public/logo.png`.

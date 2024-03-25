@@ -70,9 +70,17 @@ export default function KanbanBoard() {
   
     // Send updated column data to the Django backend
     const colorToUpdate = draggableId;
-    axios.post(`https://a-paint-company-a54db84c4060.herokuapp.com/api/post/${colorToUpdate}/`, {
-      status: destination.droppableId,
-    })
+    axios.post(
+      `https://a-paint-company-a54db84c4060.herokuapp.com/api/post/${colorToUpdate}/`,
+      {
+        status: destination.droppableId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
+    )
     .then(response => {
       console.log('Updated column data sent to backend:', response.data);
     })
