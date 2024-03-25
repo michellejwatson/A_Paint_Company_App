@@ -1,8 +1,7 @@
 /* Styling for KanbanBoard component */
 
-/* Container for KanbanBoard */
 .kanban-board-container {
-    width: 80%;
+    width: 100%;
     padding: 20px;
   }
 

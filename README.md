@@ -24,16 +24,16 @@ This web application is for employees at 'A Paint Company' to track the status o
 ---
 
 ### Users and User Permissions
-| Username   | Password       | User Group | Staff Status | Permissions   |
-|------------|----------------|------------|--------------|---------------|
-| john       | Ilovepainting3 | Assigners  | False        | View          |
-| jane       | Ilovemanaging5 | Managers   | False        | View / Update |
-| adam       | Iloveadmin7    | Admin      | True         | View / Update |
-| bobpainter | Ilovepainting9 | Painters   | False        | View / Update |
+| Username   | Password       | User Group | Staff Status | Permissions                             |
+|------------|----------------|------------|--------------|-----------------------------------------|
+| john       | Ilovepainting3 | Assigners  | False        | View                                    |
+| jane       | Ilovemanaging5 | Managers   | False        | View / Update Inventory / Update Status |
+| adam       | Iloveadmin7    | Admin      | True         | View / Update Inventory / Update Status |
+| bobpainter | Ilovepainting9 | Painters   | False        | View / Update Inventory                 |
 
 1. John: John represents an employee who assigns houses to be painted. He is in the 'Assigners' user group so he is able to view paint inventory and status, but he is not able to update them and has no admin privileges.
 2. Jane: Jane represents a manager. She is in the 'Managers' user group so she is able to view and update paint inventory and status, but has no admin privileges.
-3. Bob: Bob represents a painter. He is in the 'Painters' user group so he is able to view and update paint inventory and status, but has no admin privileges.
+3. Bob: Bob represents a painter. He is in the 'Painters' user group so he is able to view paint inventory and status, update paint inventory, but has no admin privileges and cannot update paint status.
 4. Adam: Adam represents a system admin user. He is in the 'Admin' user group so he is able to create, delete, and edit users and user groups by accessing the `/admin/` dashboard. He is also able to view and update paint inventory and status.
 ---
 
@@ -125,7 +125,8 @@ This web application is for employees at 'A Paint Company' to track the status o
 ### Project Assumptions 
 - I have made the assumption that it is not necessary for there to be a register user / create account page because this can be done on the admin dashboard by staff accounts.
 - I have made the assumption that the display of paint inventory and status is the only required functionality beyond authentication, therefore actions such as bulk orders would not be performed through this application. 
-- I have made the assumption that users like John, whose role only involves accessing paint information for their job, should only have viewing permissions on the application. This decision aligns with the principle of least privilege, which is a security best practice aiming to restrict users' access rights to the bare minimum required for their job responsibilities.
+- Based on the information provided in the requirements, I have made the assumption that users like John, whose role only involves accessing paint information, should only have viewing permissions on the application. This decision aligns with the principle of least privilege, which is a security best practice aiming to restrict users' access rights to the bare minimum required for their job responsibilities.
+- Based on the information provided in the requirements, I have made the assumption that the painters are only supposed to be able to update paint inventory and not paint status. The statements 'Given that I am a painter, I need to update the paint inventory as I use it.' and 'As an A Paint Company painter, I would like to be able to view paint availability for pickup and be able to update paint inventory quickly' only mention paint inventory so I am following the principle of least privilege.
 ---
 
 ### Future Work 
