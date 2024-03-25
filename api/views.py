@@ -3,21 +3,29 @@ Module containing views for the 'api' app.
 """
 
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth import authenticate
 from .models import Paint
 from .serializer import PaintSerializer
+from rest_framework.permissions import IsAuthenticated, BasePermission
 
 # Define handlers for login
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
+# Define custom permission class
+class IsNotAssigner(BasePermission):
+    def has_permission(self, request, view):
+        # Check if the user does not belong to the 'Assigners' group
+        return not request.user.groups.filter(name='Assigners').exists()
+
 # Create your views here.
 
 @api_view(['GET'])
+@permission_classes([IsNotAssigner])
 def get_data(request):
     """
     Retrieve all paint information.
